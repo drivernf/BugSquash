@@ -1,0 +1,16 @@
+﻿@model TicketBasket
+
+<div class="row flex-grow-1">
+	<div class="col-4 d-flex flex-column" ondragover='onDragOver(event);' ondragleave='onDragLeave(event);' ondrop='onDrop(event);'>
+		@{Model.ticketList = Model.active;}
+		@Html.Partial("_DisplayTickets", Model)
+	</div>
+	<div class="col-4 d-flex flex-column" ondragover='onDragOver(event);' ondragleave='onDragLeave(event);' ondrop='onDrop(event);'>
+		@{Model.ticketList = Model.squashing;}
+		@Html.Partial("_DisplayTickets", Model)
+	</div>
+	<div class="col-4 d-flex flex-column" ondragover='onDragOver(event);' ondragleave='onDragLeave(event);' ondrop='onDrop(event);'>
+		@{Model.ticketList = Model.squashed;}
+		@Html.Partial("_DisplayTickets", Model)
+	</div>
+</div>

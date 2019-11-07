@@ -1,0 +1,40 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+@model BugTracker.Models.TicketModel
+
+<div class="container-fluid py-2">
+	<div class="row">
+		<div class="col-sm-7 align-self-center text-center"><h3 class="float-sm-left ml-3">Awesome Project</h3></div>
+		<div class="col-sm-5 align-self-center text-center"><p><button type="button" data-toggle="modal" data-target="#addTicket" class="btn btn-info btn-lg float-sm-right">+ Add Bug</button></p></div>
+	</div>
+</div>
+
+<div class="container-fluid d-flex h-100">
+	<div class="row flex-grow-1">
+		<div class="col-md-2 bg-light d-flex flex-column">
+			<div class="container pt-1 h-100">
+				<h5>Team</h5>
+				<p class="list-inline">Nick</p>
+			</div>
+		</div>
+		<div class="col-md-10 bg-light d-flex flex-column">
+			<div class="container m-0 mw-100 pt-1">
+				<div class="row">
+					<div class="col-4">
+						<span class="lead">Active</span>
+					</div>
+					<div class="col-4">
+						<span class="lead">Squashing</span>
+					</div>
+					<div class="col-4">
+						<span class="lead">Squashed</span>
+					</div>
+				</div>
+			</div>
+			<div id="ticket-view-container" class="container-fluid d-flex m-0 mw-100 h-100"></div>
+		</div>
+	</div>
+</div>
+
+@Html.Partial("AddTicket", Model)

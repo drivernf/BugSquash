@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - BugTracker</title>
+	<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link href="https://fonts.googleapis.com/css?family=Nova+Square&display=swap" rel="stylesheet">
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/popper/popper.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark header-color py-1">
+		<div class="container pl-0">
+			<a id="siteLogo" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Bug Squash</a>
+			<div id="siteNav" class="navbar-collapse d-sm-inline-flex">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">My Projects</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid body-content col-12">
+		<div class="container-fluid d-flex flex-column flex-grow-1 vh-100 overflow-hidden mt-1"> @RenderBody() </div>
+	</div>
+	@RenderSection("Scripts", required: false)
+</body>
+</html>

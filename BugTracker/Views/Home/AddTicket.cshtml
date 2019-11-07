@@ -1,0 +1,47 @@
+﻿@model BugTracker.Models.TicketModel
+
+<div class="modal fade" id="addTicket" tabindex="-1" role="dialog" aria-labelledby="addTicketModal" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addTicketModal">New Bug</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body pb-0">
+				<form asp-action="AddTicket">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label">Urgency:</label>
+
+						<div class="dropdown show">
+							<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								none
+							</a>
+							<input asp-for="Urgency" type="hidden" class="form-control" value="0" id="urgencyInput" />
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+								<a class="dropdown-item" href="#">none</a>
+								<a class="dropdown-item" href="#">vital</a>
+								<a class="dropdown-item" href="#">average</a>
+								<a class="dropdown-item" href="#">minor</a>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Description:</label>
+						<textarea asp-for="Description" class="form-control" id="message-text"></textarea>
+						<span asp-validation-for="Description" class="text-danger"></span>
+					</div>
+					<div class="modal-footer justify-content-center">
+						<button type="submit" value="Create" class="btn btn-info">Create</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
