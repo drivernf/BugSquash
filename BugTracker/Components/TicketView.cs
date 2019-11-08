@@ -1,21 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BugTracker.Models;
-using System.Collections;
 using static DataLibrary.BusinessLogic.TicketProcessor;
-using System.Diagnostics;
 
 namespace BugTracker.Components
 {
     public class TicketView : ViewComponent
     {
-        public IViewComponentResult Invoke(TicketBasket currBasket)
+        public IViewComponentResult Invoke()
         {
-            TicketBasket newBasket = GetBasket();
-            return View(newBasket);
+            return View(GetBasket());
         }
 
         // Create and Return Ticket Basket
@@ -30,16 +25,15 @@ namespace BugTracker.Components
                 tickets.Add(GetTicket(row));
 
             // Sort list of tickets by urgency
-            //tickets = SortTickets(tickets);
+            tickets = tickets.OrderByDescending(x => x.Urgency).ThenBy(x => x.TicketId).ToList();
 
             // Subdivide tickets into basket
-            var basket = new TicketBasket();
-            foreach (TicketModel t in tickets)
+            var basket = new TicketBasket
             {
-                if (t.Status == 0) basket.active.Add(t);
-                else if (t.Status == 1) basket.squashing.Add(t);
-                else if (t.Status == 2) basket.squashed.Add(t);
-            }
+                active = tickets.Where(x => x.Status == 0).ToList(),
+                squashing = tickets.Where(x => x.Status == 1).ToList(),
+                squashed = tickets.Where(x => x.Status == 2).ToList()
+            };
 
             // Return basket
             return basket;
@@ -57,18 +51,5 @@ namespace BugTracker.Components
             };
             return ticketModel;
         }
-
-        /*
-        // Sort Tickets by Urgency
-        public List<TicketModel> SortTickets(List<TicketModel> tickets)
-        {
-            List<TicketModel> sortedTickets = new List<TicketModel>();
-            foreach (TicketModel t in tickets) if (t.Urgency == 3) sortedTickets.Add(t);
-            foreach (TicketModel t in tickets) if (t.Urgency == 2) sortedTickets.Add(t);
-            foreach (TicketModel t in tickets) if (t.Urgency == 1) sortedTickets.Add(t);
-            foreach (TicketModel t in tickets) if (t.Urgency == 0) sortedTickets.Add(t);
-            return sortedTickets;
-        }
-        */
     }
 }

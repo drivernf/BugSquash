@@ -1,5 +1,4 @@
 ﻿function setUrgency(urgency) {
-	console.log("Urgencyy: " + urgency);
 	let bColor = "lightgrey";
 	if (urgency == 3) bColor = "darkred";
 	else if (urgency == 2) bColor = "darkyellow";

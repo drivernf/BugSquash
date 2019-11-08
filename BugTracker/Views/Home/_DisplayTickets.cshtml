@@ -1,10 +1,9 @@
 ﻿@model TicketBasket
 
-<ul id="ticketList" class="list-unstyled h-100 m-0">
-	<div id="detailsDiv"></div>
+<ul class="list-unstyled h-100 m-0">
 	@foreach (var item in Model.ticketList)
 	{
-		<li id="@item.TicketId" class="ticket-listitem mx-2 my-3" draggable="true" ondragstart="onDragStart(event);" onclick="onClick(event, '@item.Urgency.ToString()', '@item.Description.ToString()')">
+		<li id="@item.TicketId" class="ticket-listitem mx-2 my-3" draggable="true" ondragstart="onDragStart(event);" onclick="onClick('@item.TicketId.ToString()', '@item.Status.ToString()', '@item.Urgency.ToString()', '@item.Description.ToString()')">
 			<div class="ticket-container">
 				<div class="ticket-urgency @("U-"+item.Urgency) p-1">
 				</div>
@@ -18,33 +17,10 @@
 
 <script src="~/js/ticket.js" asp-append-version="true"></script>
 
-<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModal" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="detailsModal">Details</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body pb-0">
-				<hr />
-				<dl class="row">
-					<dd id="d_Urgency" class="col-sm-10">
-					</dd>
-					<dd id="d_Description" class="col-sm-10">
-					</dd>
-				</dl>
-			</div>
-		</div>
-	</div>
-</div>
-
 <script>
 
-	function onClick(event, urg, desc) {
-		var tId = event.currentTarget.id;
-		console.log("Id: " + event.currentTarget.id + " Urgency: " + urg + " Description: " + desc);
+	function onClick(ticketId, status, urg, desc) {
+		document.getElementById("d_TicketId").value = ticketId;
 		document.getElementById("d_Urgency").textContent = urg;
 		document.getElementById("d_Description").textContent = desc;
 		$("#detailsModal").modal();

@@ -1,26 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using BugTracker.Models;
-using DataLibrary;
 using static DataLibrary.BusinessLogic.TicketProcessor;
-using static BugTracker.Components.TicketView;
 
 namespace BugTracker.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         // Index Page View
         public IActionResult Index()
         {
@@ -40,12 +26,20 @@ namespace BugTracker.Controllers
         public IActionResult AddTicket(TicketModel model)
         {
             if (ModelState.IsValid)
-            {
-                int recordsCreated = CreateTicket(0, model.Urgency, model.Description);
-                return RedirectToAction("Index");
-            }
+                CreateTicket(0, model.Urgency, model.Description);
 
-            return View();
+            return RedirectToAction("Index");
+        }
+
+        // Edit Ticket Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditTicket(TicketModel model)
+        {
+            if (ModelState.IsValid)
+                ModifyTicket(model.TicketId, model.Urgency, model.Description);
+
+            return RedirectToAction("Index");
         }
 
         // Error Page View

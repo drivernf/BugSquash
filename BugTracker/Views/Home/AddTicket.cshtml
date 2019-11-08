@@ -1,12 +1,12 @@
 ﻿@model BugTracker.Models.TicketModel
 
-<div class="modal fade" id="addTicket" tabindex="-1" role="dialog" aria-labelledby="addTicketModal" aria-hidden="true">
+<div class="modal fade" id="addTicket" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="addTicketModal">New Bug</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
+				<button type="button" class="close" data-dismiss="modal">
+					<span>&times;</span>
 				</button>
 			</div>
 			<div class="modal-body pb-0">
@@ -16,11 +16,11 @@
 						<label for="recipient-name" class="col-form-label">Urgency:</label>
 
 						<div class="dropdown show">
-							<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 								none
 							</a>
-							<input asp-for="Urgency" type="hidden" class="form-control" value="0" id="urgencyInput" />
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<input asp-for="Urgency" type="hidden" class="form-control urgencyInput" value="0" />
+							<div class="dropdown-menu">
 								<a class="dropdown-item" href="#">none</a>
 								<a class="dropdown-item" href="#">vital</a>
 								<a class="dropdown-item" href="#">average</a>
@@ -30,7 +30,7 @@
 					</div>
 					<div class="form-group">
 						<label>Description:</label>
-						<textarea asp-for="Description" class="form-control" id="message-text"></textarea>
+						<textarea asp-for="Description" class="form-control" rows="15" style="resize: none;"></textarea>
 						<span asp-validation-for="Description" class="text-danger"></span>
 					</div>
 					<div class="modal-footer justify-content-center">
