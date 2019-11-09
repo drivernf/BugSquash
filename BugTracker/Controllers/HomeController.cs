@@ -51,6 +51,12 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult GetDetailsComponent(int ticketId)
+        {
+            Debug.WriteLine($"Get Details Component: {ticketId}");
+            return ViewComponent("Details", ticketId);
+        }
+
         // Error Page View
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

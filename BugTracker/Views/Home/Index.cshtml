@@ -1,7 +1,7 @@
 ﻿@{
 	ViewData["Title"] = "Home Page";
 }
-@model BugTracker.Models.TicketModel
+@model TicketModel
 
 <div class="container-fluid py-2">
 	<div class="row">
@@ -40,3 +40,5 @@
 </div>
 
 <partial name="AddTicket" model="Model" />
+
+<div id="details-container"></div>

@@ -62,3 +62,8 @@ function onDrop(event) {
 		.style
 		.backgroundColor = 'transparent';
 }
+
+function getTicketDetails(ticketId) {
+	var container = $("#details-container");  // Find details container in Index.cshtml
+	$.get("/Home/GetDetailsComponent", { ticketId }, function (data) { container.html(data); }); // Get details component and inject it into details container
+}
