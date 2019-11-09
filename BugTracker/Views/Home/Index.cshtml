@@ -32,54 +32,11 @@
 					</div>
 				</div>
 			</div>
-			<div id="ticket-view-container" class="container-fluid d-flex m-0 mw-100 h-100"></div>
+			<div id="ticket-view-container" class="container-fluid d-flex m-0 mw-100 h-100">
+				@await Component.InvokeAsync("BasketContainer")
+			</div>
 		</div>
 	</div>
 </div>
 
 <partial name="AddTicket" model="Model" />
-
-<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="editTicketModal">Details</h5>
-				<button type="button" class="close" data-dismiss="modal">
-					<span>&times;</span>
-				</button>
-			</div>
-			<div class="modal-body pb-0">
-				<form asp-action="EditTicket">
-					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-					<div class="form-group empty-div">
-						<label></label>
-						<input asp-for="TicketId" type="hidden" class="form-control" value="0" id="d_TicketId" />
-					</div>
-					<div class="form-group">
-						<label>Urgency:</label>
-						<div class="dropdown show">
-							<a class="btn btn-secondary dropdown-toggle urgency-dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
-								none
-							</a>
-							<input asp-for="Urgency" type="hidden" class="form-control urgencyInput" value="0" id="d_Urgency" />
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#">none</a>
-								<a class="dropdown-item" href="#">vital</a>
-								<a class="dropdown-item" href="#">average</a>
-								<a class="dropdown-item" href="#">minor</a>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label>Description:</label>
-						<textarea asp-for="Description" id="d_Description" class="form-control" rows="15" style="resize: none;"></textarea>
-						<span asp-validation-for="Description" class="text-danger"></span>
-					</div>
-					<div class="modal-footer justify-content-center">
-						<button type="submit" value="Create" class="btn btn-info">Save</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>

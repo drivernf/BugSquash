@@ -54,20 +54,20 @@ textarea {
 	max-width: 100%;
 }
 
-.U-0 {
-	background-color: #cccccc;
+.urgency-none {
+	background-color: #cccccc !important;
 }
 
-.U-3 {
-	background-color: darkred;
+.urgency-vital {
+	background-color: darkred !important;
 }
 
-.U-2 {
-	background-color: #e8b019;
+.urgency-average {
+	background-color: #e8b019 !important;
 }
 
-.U-1 {
-	background-color: #8bb863;
+.urgency-minor {
+	background-color: #8bb863 !important;
 }
 
 #siteLogo {

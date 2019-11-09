@@ -5,13 +5,13 @@ namespace DataLibrary.BusinessLogic
 {
     public static class TicketProcessor
     {
-        public static int CreateTicket(int status, int urgency, string description)
+        public static int CreateTicket(int status, string urgency, string description)
         {
             TicketModel data = new TicketModel
             {
                 TicketId = 9,
                 Status = status,
-                Urgency = urgency,
+                Urgency = ConvertUrgency(urgency),
                 Description = description
             };
 
@@ -21,13 +21,13 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
 
-        public static int ModifyTicket(int ticketId, int urgency, string description)
+        public static int ModifyTicket(int ticketId, string urgency, string description)
         {
             TicketModel data = new TicketModel
             {
                 TicketId = ticketId,
                 Status = 0,
-                Urgency = urgency,
+                Urgency = ConvertUrgency(urgency),
                 Description = description
             };
 
@@ -42,6 +42,14 @@ namespace DataLibrary.BusinessLogic
             string sql = @"select Id, TicketId, Status, Urgency, Description from dbo.TicketTable;";
 
             return SqlDataAccess.LoadData<TicketModel>(sql);
+        }
+
+        public static int ConvertUrgency(string urgency)
+        {
+            if (urgency == "vital") return 3;
+            else if (urgency == "average") return 2;
+            else if (urgency == "minor") return 1;
+            else return 0;
         }
     }
 }

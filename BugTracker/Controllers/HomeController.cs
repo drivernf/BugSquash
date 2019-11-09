@@ -31,6 +31,15 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index");
         }
 
+        // Details Ticket Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public PartialViewResult TicketDetails(TicketModel model)
+        {
+            Debug.WriteLine($"Dets: {model.Description}");
+            return PartialView("_TicketDetails", model);
+        }
+
         // Edit Ticket Post
         [HttpPost]
         [ValidateAntiForgeryToken]

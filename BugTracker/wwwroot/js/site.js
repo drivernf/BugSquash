@@ -1,10 +1,8 @@
 ﻿$(document).ready(function () {
 	var container = $("#ticket-view-container");
-	getTicketView();
-	var intervalId = window.setInterval(getTicketView, 1000);
+	//getTicketView();
+	//window.setInterval(getTicketView, 1000);
 	var currTicketViewData = "";
-	var lastDropdownClicked;
-
 	$('.empty-div').hide();
 
 	// Updates ticket view upon changes
@@ -14,37 +12,23 @@
 
 	// Urgency dropdown menu
 	$(".dropdown-menu a").click(function () {
-		// References
-		var urgencyText = $(this).text();
-		var urgencyInt = 0;
-		var urgencyColor = "lightgrey";
-
-		// Assign references
-		if (urgencyText === "none") { urgencyInt = 0; urgencyColor = "lightgrey" }
-		else if (urgencyText === "vital") { urgencyInt = 3; urgencyColor = "darkred" }
-		else if (urgencyText === "average") { urgencyInt = 2; urgencyColor = "yellow" }
-		else if (urgencyText === "minor") { urgencyInt = 1; urgencyColor = "green" }
-
-		// Set value for urgency
-		var urgInputs = document.getElementsByClassName("urgencyInput");
-		var i;
-		for (i = 0; i < urgInputs.length; i++) {
-			console.log(`#${i} Urg: ${urgencyInt}`);
-			urgInputs[i].value = urgencyInt;
-		}
-
-		// Set dropdown menu text and style
-		if (lastDropdownClicked !== null) {
-			lastDropdownClicked.text = urgencyText;
-			lastDropdownClicked.style.color = urgencyColor;
-		}
-	});
-
-	// Urgency button tracker
-	$(".urgency-dropdown").click(function () {
-		lastDropdownClicked = this;
+		setUrgency($(this).text());
 	});
 });
+
+function setUrgency(urgText) {
+	// Set value for urgency
+	var urgInputs = document.getElementsByClassName("urgencyInput");
+	for (i = 0; i < urgInputs.length; i++) {
+		urgInputs[i].value = urgText;
+	}
+
+	// Set dropdown menu text and style
+	var urgDropdowns = document.getElementsByClassName("urgency-dropdown");
+	for (i = 0; i < urgDropdowns.length; i++) {
+		urgDropdowns[i].text = urgText;
+	}
+}
 
 function onDragStart(event) {
 	event

@@ -14,9 +14,8 @@
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 					<div class="form-group">
 						<label for="recipient-name" class="col-form-label">Urgency:</label>
-
 						<div class="dropdown show">
-							<a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+							<a class="btn btn-secondary dropdown-toggle urgency-dropdown" href="#" role="button" data-toggle="dropdown">
 								none
 							</a>
 							<input asp-for="Urgency" type="hidden" class="form-control urgencyInput" value="0" />
