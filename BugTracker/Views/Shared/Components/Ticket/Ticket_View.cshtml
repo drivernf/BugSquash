@@ -1,0 +1,11 @@
+﻿@model TicketModel
+
+<li class="ticket-listitem mx-2 my-3" draggable="true" ondragstart="onDragStart(event);" onclick="showDetailsModal(@Model.TicketId)">
+	<div class="ticket-container">
+		<div class="ticket-urgency @("urgency-"+Model.Urgency) p-1">
+		</div>
+		<div class="ticket-content m-3 h-100">
+			<span>@Html.DisplayFor(modelItem => Model.Description)</span>
+		</div>
+	</div>
+</li>

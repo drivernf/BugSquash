@@ -1,7 +1,5 @@
 ﻿$(document).ready(function () {
 	var container = $("#ticket-view-container");
-	//getTicketView();
-	//window.setInterval(getTicketView, 1000);
 	var currTicketViewData = "";
 	$('.empty-div').hide();
 
@@ -28,6 +26,10 @@ function setUrgency(urgText) {
 	for (i = 0; i < urgDropdowns.length; i++) {
 		urgDropdowns[i].text = urgText;
 	}
+}
+
+function showDetailsModal(ticketId) {
+	$('#detailsmodal-' + ticketId).modal('show');
 }
 
 function onDragStart(event) {
@@ -61,9 +63,4 @@ function onDrop(event) {
 		.currentTarget
 		.style
 		.backgroundColor = 'transparent';
-}
-
-function getTicketDetails(ticketId) {
-	var container = $("#details-container");  // Find details container in Index.cshtml
-	$.get("/Home/GetDetailsComponent", { ticketId }, function (data) { container.html(data); }); // Get details component and inject it into details container
 }

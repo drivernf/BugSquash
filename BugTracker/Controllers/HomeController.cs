@@ -31,15 +31,6 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index");
         }
 
-        // Details Ticket Post
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public PartialViewResult TicketDetails(TicketModel model)
-        {
-            Debug.WriteLine($"Dets: {model.Description}");
-            return PartialView("_TicketDetails", model);
-        }
-
         // Edit Ticket Post
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -49,12 +40,6 @@ namespace BugTracker.Controllers
                 ModifyTicket(model.TicketId, model.Urgency, model.Description);
 
             return RedirectToAction("Index");
-        }
-
-        public IActionResult GetDetailsComponent(int ticketId)
-        {
-            Debug.WriteLine($"Get Details Component: {ticketId}");
-            return ViewComponent("Details", ticketId);
         }
 
         // Error Page View

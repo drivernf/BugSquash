@@ -1,0 +1,31 @@
+﻿@model TicketBasket
+
+<div class="row flex-grow-1">
+	<div class="col-4 d-flex flex-column" ondragover='onDragOver(event);' ondragleave='onDragLeave(event);' ondrop='onDrop(event);'>
+		<ul class="list-unstyled h-100 m-0">
+			@foreach (var item in Model.active)
+			{
+				@await Component.InvokeAsync("Ticket", item)
+				@await Component.InvokeAsync("Details", item)
+			}
+		</ul>
+	</div>
+	<div class="col-4 d-flex flex-column" ondragover='onDragOver(event);' ondragleave='onDragLeave(event);' ondrop='onDrop(event);'>
+		<ul class="list-unstyled h-100 m-0">
+			@foreach (var item in Model.squashing)
+			{
+				@await Component.InvokeAsync("Ticket", item)
+				@await Component.InvokeAsync("Details", item)
+			}
+		</ul>
+	</div>
+	<div class="col-4 d-flex flex-column" ondragover='onDragOver(event);' ondragleave='onDragLeave(event);' ondrop='onDrop(event);'>
+		<ul class="list-unstyled h-100 m-0">
+			@foreach (var item in Model.squashed)
+			{
+				@await Component.InvokeAsync("Ticket", item)
+				@await Component.InvokeAsync("Details", item)
+			}
+		</ul>
+	</div>
+</div>

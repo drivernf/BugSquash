@@ -1,24 +1,28 @@
-﻿@model BugTracker.Models.TicketModel
+﻿@model TicketModel
 
-<div class="modal fade" id="addTicket" tabindex="-1" role="dialog">
+<div class="modal fade" id="@("detailsmodal-" + Model.TicketId)" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="addTicketModal">New Bug</h5>
+				<h5 class="modal-title">Details</h5>
 				<button type="button" class="close" data-dismiss="modal">
 					<span>&times;</span>
 				</button>
 			</div>
 			<div class="modal-body pb-0">
-				<form asp-action="AddTicket">
+				<form asp-action="EditTicket">
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group empty-div">
+						<label></label>
+						<input asp-for="TicketId" type="hidden" class="form-control" value="@Model.TicketId"/>
+					</div>
 					<div class="form-group">
-						<label for="recipient-name" class="col-form-label">Urgency:</label>
+						<label>Urgency:</label>
 						<div class="dropdown show">
 							<a class="btn btn-secondary dropdown-toggle urgency-dropdown" href="#" role="button" data-toggle="dropdown">
-								none
+								@Html.DisplayFor(modelItem => Model.Urgency)
 							</a>
-							<input asp-for="Urgency" type="hidden" class="form-control urgencyInput" value="0"/>
+							<input asp-for="Urgency" type="hidden" class="form-control urgencyInput" value="@Model.Urgency"/>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="#">none</a>
 								<a class="dropdown-item" href="#">vital</a>
@@ -29,11 +33,13 @@
 					</div>
 					<div class="form-group">
 						<label>Description:</label>
-						<textarea asp-for="Description" class="form-control" rows="15" style="resize: none;"></textarea>
+						<textarea asp-for="Description" class="form-control" rows="15" style="resize: none;">
+							@Html.DisplayFor(modelItem => Model.Description)
+						</textarea>
 						<span asp-validation-for="Description" class="text-danger"></span>
 					</div>
 					<div class="modal-footer justify-content-center">
-						<button type="submit" value="Create" class="btn btn-info">Create</button>
+						<button type="submit" value="Create" class="btn btn-info">Save</button>
 					</div>
 				</form>
 			</div>
