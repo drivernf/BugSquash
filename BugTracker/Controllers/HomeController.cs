@@ -13,11 +13,11 @@ namespace BugTracker.Controllers
             return View();
         }
 
-        // Returns Ticket View Component
-        [Route("ticket-view")]
-        public IActionResult TicketView()
+        // Returns Basket Container Component
+        [Route("basket")]
+        public IActionResult Basket()
         {
-            return ViewComponent("TicketView");
+            return ViewComponent("BasketContainer");
         }
 
         // Add Ticket Post
@@ -32,14 +32,17 @@ namespace BugTracker.Controllers
         }
 
         // Edit Ticket Post
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult EditTicket(TicketModel model)
+        [Route("edit-ticket")]
+        public void EditTicket(int ticketId, string urgency, string description)
         {
-            if (ModelState.IsValid)
-                ModifyTicket(model.TicketId, model.Urgency, model.Description);
+            ModifyTicket(ticketId, urgency, description);
+        }
 
-            return RedirectToAction("Index");
+        // Delete Ticket Post
+        [Route("delete-ticket")]
+        public void DeleteTicket(int ticketId)
+        {
+            RemoveTicket(ticketId);
         }
 
         // Error Page View

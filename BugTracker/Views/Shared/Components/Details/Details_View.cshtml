@@ -1,52 +1,34 @@
 ﻿@model TicketModel
 
-<div class="modal fade" id="@("detailsmodal-" + Model.TicketId)" tabindex="-1" role="dialog">
+<div class="modal fade" id="detailsmodal-@Model.TicketId" tabindex="-1" role="dialog" aria-labelledby="adetailsModel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">Details</h5>
-				<button type="button" class="close" data-dismiss="modal">
-					<span>&times;</span>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body pb-0">
-				<form asp-action="EditTicket">
-					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-					<div class="form-group empty-div">
-						<label></label>
-						<input asp-for="TicketId" type="hidden" class="form-control" value="@Model.TicketId"/>
+			<div class="modal-body justify-content-center">
+				<h6 class="text-center">Urgency:</h6>
+				<div class="dropdown show text-center">
+					<a id="d-urgency-@Model.TicketId" class="btn btn-secondary dropdown-toggle urgency-dropdown" href="#" role="button" data-toggle="dropdown">@Html.DisplayFor(modelItem => Model.Urgency)</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#" onclick="setUrgency('none')">none</a>
+						<a class="dropdown-item" href="#" onclick="setUrgency('vital')">vital</a>
+						<a class="dropdown-item" href="#" onclick="setUrgency('average')">average</a>
+						<a class="dropdown-item" href="#" onclick="setUrgency('minor')">minor</a>
 					</div>
-					<div class="form-group">
-						<label>Urgency:</label>
-						<div class="dropdown show">
-							<a class="btn btn-secondary dropdown-toggle urgency-dropdown" href="#" role="button" data-toggle="dropdown">
-								@Html.DisplayFor(modelItem => Model.Urgency)
-							</a>
-							<input asp-for="Urgency" type="hidden" class="form-control urgencyInput" value="@Model.Urgency"/>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#">none</a>
-								<a class="dropdown-item" href="#">vital</a>
-								<a class="dropdown-item" href="#">average</a>
-								<a class="dropdown-item" href="#">minor</a>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label>Description:</label>
-						<textarea asp-for="Description" class="form-control" rows="15" style="resize: none;">
-							@Html.DisplayFor(modelItem => Model.Description)
-						</textarea>
-						<span asp-validation-for="Description" class="text-danger"></span>
-					</div>
-					<div class="modal-footer justify-content-center">
-						<button type="submit" value="Create" class="btn btn-info">Save</button>
-					</div>
-				</form>
+				</div>
+				<hr />
+				<h6 class="text-center">Description:</h6>
+				<textarea id="d-description-@Model.TicketId" rows="15" style="resize:none;" class="w-100 d-block ml-auto mr-auto">@Html.DisplayFor(modelItem => Model.Description)</textarea>
+			</div>
+			<div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-danger" onclick="deleteTicket('@Model.TicketId')">Delete</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" onclick="editTicket('@Model.TicketId')">Save changes</button>
 			</div>
 		</div>
 	</div>
 </div>
-
-@section Scripts {
-	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

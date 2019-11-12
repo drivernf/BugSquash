@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BugTracker.Models;
-using System.Collections.Generic;
-using static DataLibrary.BusinessLogic.TicketProcessor;
-using System.Linq;
 
 namespace BugTracker.Components
 {

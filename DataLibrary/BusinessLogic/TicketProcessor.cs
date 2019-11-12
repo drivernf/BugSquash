@@ -51,5 +51,17 @@ namespace DataLibrary.BusinessLogic
             else if (urgency == "minor") return 1;
             else return 0;
         }
+
+        public static int RemoveTicket(int ticketId)
+        {
+            TicketModel data = new TicketModel
+            {
+                TicketId = ticketId
+            };
+
+            string sql = @"delete from dbo.TicketTable where Id = @TicketId;";
+
+            return SqlDataAccess.SaveData(sql, data);
+        }
     }
 }

@@ -1,18 +1,11 @@
 ﻿$(document).ready(function () {
-	var container = $("#ticket-view-container");
-	var currTicketViewData = "";
 	$('.empty-div').hide();
-
-	// Updates ticket view upon changes
-	function getTicketView() {
-		$.get("ticket-view", function (data) { if (data !== currTicketViewData) container.html(data); currTicketViewData = data; });
-	}
-
-	// Urgency dropdown menu
-	$(".dropdown-menu a").click(function () {
-		setUrgency($(this).text());
-	});
 });
+
+function getTicketBasket() {
+	var container = $("#ticket-view-container");
+	$.get("basket", function (data) { container.html(data); });
+}
 
 function setUrgency(urgText) {
 	// Set value for urgency
@@ -29,7 +22,28 @@ function setUrgency(urgText) {
 }
 
 function showDetailsModal(ticketId) {
-	$('#detailsmodal-' + ticketId).modal('show');
+	$('#detailsmodal-' + ticketId).modal("show");
+}
+
+function editTicket(ticketId) {
+	var description = document.getElementById("d-description-" + ticketId).value;
+	var urgency = document.getElementById("d-urgency-" + ticketId).text;
+	console.log("Urgency: " + urgency);
+	$.get("edit-ticket", { ticketId: ticketId, urgency: urgency, description: description })
+		.done(function (data) {
+			$('#detailsmodal-' + ticketId).modal('hide');
+			$('.modal-backdrop').hide();
+			getTicketBasket();
+		});
+}
+
+function deleteTicket(ticketId) {
+	$.get("delete-ticket", { ticketId: ticketId })
+		.done(function (data) {
+			$('#detailsmodal-' + ticketId).modal('hide');
+			$('.modal-backdrop').hide();
+			getTicketBasket();
+		});
 }
 
 function onDragStart(event) {
