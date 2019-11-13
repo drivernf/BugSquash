@@ -63,5 +63,18 @@ namespace DataLibrary.BusinessLogic
 
             return SqlDataAccess.SaveData(sql, data);
         }
+
+        public static int StatusChange(int ticketId, int status)
+        {
+            TicketModel data = new TicketModel
+            {
+                TicketId = ticketId,
+                Status = status
+            };
+
+            string sql = @"update dbo.TicketTable set Status = @Status where Id = @TicketId;";
+
+            return SqlDataAccess.SaveData(sql, data);
+        }
     }
 }

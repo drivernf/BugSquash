@@ -45,6 +45,13 @@ namespace BugTracker.Controllers
             RemoveTicket(ticketId);
         }
 
+        // Change Status of Ticket Post
+        [Route("status-ticket")]
+        public void StatusTicket(int ticketId, int status)
+        {
+            StatusChange(ticketId, status);
+        }
+
         // Error Page View
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

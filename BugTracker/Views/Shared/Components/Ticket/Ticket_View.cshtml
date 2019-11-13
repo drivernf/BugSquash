@@ -3,7 +3,7 @@
 	var iden = Model.TicketId;
 }
 
-<li class="ticket-listitem mx-2 my-3" draggable="true" ondragstart="onDragStart(event);" onclick="showDetailsModal('@iden');">
+<li id="@("item-"+Model.TicketId)" class="ticket-listitem mx-2 my-3 @("status-"+Model.Status)" onclick="showDetailsModal('@iden');">
 	<div class="ticket-container">
 		<div class="ticket-urgency @("urgency-"+Model.Urgency) p-1"></div>
 		<div class="ticket-content m-3 h-100">
@@ -11,3 +11,15 @@
 		</div>
 	</div>
 </li>
+
+<script>
+	$(".ticket-listitem").draggable({
+		start: function (event, ui) {
+			$(this).addClass('noclick');
+		},
+		cursor: "grabbing",
+		zIndex: 100,
+		revert: true,
+		revertDuration: 200,
+	});
+</script>

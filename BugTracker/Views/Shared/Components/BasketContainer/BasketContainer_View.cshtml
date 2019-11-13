@@ -1,7 +1,7 @@
 ﻿@model TicketBasket
 
 <div class="row flex-grow-1">
-	<div class="col-4 d-flex flex-column" ondragover='onDragOver(event);' ondragleave='onDragLeave(event);' ondrop='onDrop(event);'>
+	<div id="status-0" class="col-4 d-flex flex-column status-container">
 		<ul class="list-unstyled h-100 m-0">
 			@foreach (var item in Model.active)
 			{
@@ -10,7 +10,7 @@
 			}
 		</ul>
 	</div>
-	<div class="col-4 d-flex flex-column" ondragover='onDragOver(event);' ondragleave='onDragLeave(event);' ondrop='onDrop(event);'>
+	<div id="status-1" class="col-4 d-flex flex-column status-container">
 		<ul class="list-unstyled h-100 m-0">
 			@foreach (var item in Model.squashing)
 			{
@@ -19,7 +19,7 @@
 			}
 		</ul>
 	</div>
-	<div class="col-4 d-flex flex-column" ondragover='onDragOver(event);' ondragleave='onDragLeave(event);' ondrop='onDrop(event);'>
+	<div id="status-2" class="col-4 d-flex flex-column status-container">
 		<ul class="list-unstyled h-100 m-0">
 			@foreach (var item in Model.squashed)
 			{
@@ -29,3 +29,14 @@
 		</ul>
 	</div>
 </div>
+
+<script>
+	$(".status-container").droppable({
+		accept: '.ticket-listitem',
+		drop: function (event, ui) {
+			var ticket = $(ui.draggable);
+			statusTicket(ticket, $(this));
+		},
+		hoverClass: 'status-container-highlight',
+	});
+</script>

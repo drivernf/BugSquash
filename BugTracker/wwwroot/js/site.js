@@ -22,13 +22,17 @@ function setUrgency(urgText) {
 }
 
 function showDetailsModal(ticketId) {
-	$('#detailsmodal-' + ticketId).modal("show");
+	if ($('#item-' + ticketId).hasClass('noclick')) {
+		$('#item-' + ticketId).removeClass('noclick');
+	}
+	else {
+		$('#detailsmodal-' + ticketId).modal("show");
+	}
 }
 
 function editTicket(ticketId) {
 	var description = document.getElementById("d-description-" + ticketId).value;
 	var urgency = document.getElementById("d-urgency-" + ticketId).text;
-	console.log("Urgency: " + urgency);
 	$.get("edit-ticket", { ticketId: ticketId, urgency: urgency, description: description })
 		.done(function (data) {
 			$('#detailsmodal-' + ticketId).modal('hide');
@@ -46,35 +50,17 @@ function deleteTicket(ticketId) {
 		});
 }
 
-function onDragStart(event) {
-	event
-		.dataTransfer
-		.setData('text/plain', event.target.id);
-
-	event
-		.currentTarget
-		.style;
-}
-
-function onDragOver(event) {
-	event.preventDefault();
-
-	event
-		.currentTarget
-		.style
-		.backgroundColor = 'lightgrey';
-}
-
-function onDragLeave(event) {
-	event
-		.currentTarget
-		.style
-		.backgroundColor = 'transparent';
-}
-
-function onDrop(event) {
-	event
-		.currentTarget
-		.style
-		.backgroundColor = 'transparent';
+function statusTicket(ticket, container) {
+	var ticketId = ticket.attr('id').replace('item-', '');
+	var ticketClasses = ticket.attr('class').split(/\s+/);
+	var containerId = container.attr('id');
+	for (var i = 0; i < ticketClasses.length; i++) {
+		if (ticketClasses[i] === containerId) { return; }
+	}
+	ticket.draggable("option", "revertDuration", 0);
+	ticket.appendTo(container.children());
+	$.get("status-ticket", { ticketId: ticketId, status: containerId.replace('status-', '') })
+		.done(function (data) {
+			getTicketBasket();
+		});
 }
