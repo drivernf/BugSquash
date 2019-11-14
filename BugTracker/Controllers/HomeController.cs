@@ -47,9 +47,10 @@ namespace BugTracker.Controllers
 
         // Change Status of Ticket Post
         [Route("status-ticket")]
-        public void StatusTicket(int ticketId, int status)
+        public IActionResult StatusTicket(int ticketId, int status)
         {
             StatusChange(ticketId, status);
+            return ViewComponent("BasketContainer");
         }
 
         // Error Page View

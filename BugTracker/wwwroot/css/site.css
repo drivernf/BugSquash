@@ -1,6 +1,9 @@
 ﻿body {
-	padding-top: 44px;
-	padding-bottom: 20px;
+	padding-top: 48px;
+}
+
+html, body {
+	height: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -38,6 +41,7 @@ textarea {
 }
 
 .ticket-listitem {
+	cursor: pointer;
 }
 
 .ticket-container {
@@ -81,4 +85,38 @@ textarea {
 
 .status-container-highlight {
 	background-color: lightgrey;
+}
+
+.noclick {
+	cursor: grabbing;
+}
+
+.sidebar {
+	height: 100%;
+	width: 160px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: white;
+	overflow-x: hidden;
+	padding-top: 128px;
+}
+
+.topbar {
+	z-index: 2;
+	background-color: white;
+}
+
+.workarea {
+	margin-left: 0px;
+	padding: 0px 10px;
+	height: 100%;
+	background-color: #e8ebef;
+}
+
+@media (min-width: 576px) {
+	.workarea {
+		margin-left: 160px;
+	}
 }

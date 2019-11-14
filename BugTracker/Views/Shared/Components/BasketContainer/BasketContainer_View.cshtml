@@ -37,6 +37,8 @@
 			var ticket = $(ui.draggable);
 			statusTicket(ticket, $(this));
 		},
-		hoverClass: 'status-container-highlight',
+		classes: {
+			'ui-droppable-hover': 'status-container-highlight'
+		},
 	});
 </script>

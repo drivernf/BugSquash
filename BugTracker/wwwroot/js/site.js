@@ -57,10 +57,12 @@ function statusTicket(ticket, container) {
 	for (var i = 0; i < ticketClasses.length; i++) {
 		if (ticketClasses[i] === containerId) { return; }
 	}
+	if (!$(ticket).data('uiDraggable')) return;
 	ticket.draggable("option", "revertDuration", 0);
 	ticket.appendTo(container.children());
 	$.get("status-ticket", { ticketId: ticketId, status: containerId.replace('status-', '') })
 		.done(function (data) {
-			getTicketBasket();
+			$("#ticket-view-container").html(data);
+			$('html,body').css('cursor', 'default');
 		});
 }
