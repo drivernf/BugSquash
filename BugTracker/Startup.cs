@@ -12,11 +12,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BugTracker.Data;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BugTracker
 {
     public class Startup
     {
+        private static string CLIENT_ID = "303631553683-c7702m0fcmo85j6pkm1lds5das7khumr.apps.googleusercontent.com";
+        private static string CLIENT_SECRET = "CcLMoSOUtyGUDlWOFbm8wnb3";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,15 +34,23 @@ namespace BugTracker
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //services.AddAuthentication().AddGoogle(googleOptions =>
-            //{
-            //    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-            //    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-            //    googleOptions.AuthorizationEndpoint = string.Concat(googleOptions.AuthorizationEndpoint, "?prompt=select_account");
-            //});
+            services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme,
+            opt =>
+            {
+                //configure your other properties
+                opt.LoginPath = "/Login";
+            });
+
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = CLIENT_ID;
+                googleOptions.ClientSecret = CLIENT_SECRET;
+                googleOptions.AuthorizationEndpoint = string.Concat(googleOptions.AuthorizationEndpoint, "?prompt=select_account");
+            });
 
             services.AddControllersWithViews();
             services.AddRazorPages();
