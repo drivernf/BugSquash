@@ -3,10 +3,10 @@
 }
 @model TicketModel
 
-<div class="topbar container-fluid py-3">
+<div class="topbar container-fluid py-sm-3">
 	<div class="row">
 		<div class="col-sm-7 align-self-center text-center"><h4 class="float-sm-left ml-1">Awesome Project</h4></div>
-		<div class="col-sm-5 align-self-center text-center"><p><button type="button" data-toggle="modal" data-target="#addTicket" class="btn btn-info btn-lg float-sm-right">+ Add Bug</button></p></div>
+		<div class="col-sm-5 align-self-center text-center"><p class="mb-2 mr-1"><button type="button" data-toggle="modal" data-target="#addTicket" class="btn btn-info float-sm-right">+ Add Task</button></p></div>
 	</div>
 </div>
 
@@ -17,8 +17,8 @@
 </div>
 
 <div class="workarea">
-	<div class="container m-0 mw-100 pt-0">
-		<div class="row">
+	<div class="container-fluid m-0 mw-100 p-0">
+		<div class="row mx-0">
 			<div class="col-4">
 				<span class="lead">Active</span>
 			</div>
@@ -30,7 +30,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="ticket-view-container" class="container-fluid d-flex m-0 mw-100 h-100">
+	<div id="ticket-view-container" class="container-fluid d-flex m-0 mw-100 h-100 mx-0 px-0">
 		@await Component.InvokeAsync("BasketContainer")
 	</div>
 </div>

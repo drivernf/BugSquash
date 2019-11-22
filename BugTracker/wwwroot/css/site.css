@@ -76,6 +76,7 @@ textarea {
 
 #siteLogo {
 	font-family: 'Nova Square', cursive !important;
+	color: #ede68a;
 }
 
 #siteNav {
@@ -119,4 +120,106 @@ textarea {
 	.workarea {
 		margin-left: 160px;
 	}
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 2px grey;
+	border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #808080;
+	border-radius: 10px;
+}
+
+.unselectable {
+	-webkit-user-select: none; /* Safari */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+#custom-bg {
+	background-color: #2f3032;
+	background-image: url("../backgrounds/black-felt.png");
+	position: relative;
+}
+
+#login-container {
+	height: 40%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+#login-logo {
+	font-family: 'Nova Square', cursive !important;
+	font-size: 500%;
+	color: #ede68a;
+}
+
+#login-button {
+	height: 56px;
+	width: auto;
+}
+
+#login-img-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 90px;
+	width: auto;
+}
+
+#login-img {
+	margin-top: 10px;
+	padding-right: 300px;
+}
+
+#login-img-m {
+	display: none;
+	margin-top: 0px;
+	padding-right: 0px;
+}
+
+img {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+@media (max-width: 612px) {
+	#login-img {
+		display: none;
+	}
+	#login-img-m {
+		display: block;
+	}
+}
+
+#slogan {
+	color: #4c4e68;
+	margin-bottom: 6rem !important;
+}
+
+#projects-container {
+	background-color: #4c4e68;
+}
+
+#projects-add {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 6rem !important;
 }

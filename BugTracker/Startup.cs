@@ -42,7 +42,7 @@ namespace BugTracker
             opt =>
             {
                 //configure your other properties
-                opt.LoginPath = "/Login";
+                opt.LoginPath = "/identity/account/login";
             });
 
             services.AddAuthentication().AddGoogle(googleOptions =>

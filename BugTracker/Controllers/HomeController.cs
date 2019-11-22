@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using BugTracker.Models;
 using static DataLibrary.BusinessLogic.TicketProcessor;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BugTracker.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         // Index Page View
@@ -18,6 +20,13 @@ namespace BugTracker.Controllers
         public IActionResult Basket()
         {
             return ViewComponent("BasketContainer");
+        }
+
+        // Returns Basket Container Component
+        [Route("projects")]
+        public IActionResult Projects()
+        {
+            return View("Projects_View");
         }
 
         // Add Ticket Post

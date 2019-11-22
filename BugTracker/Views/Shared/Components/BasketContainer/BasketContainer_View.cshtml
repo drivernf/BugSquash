@@ -1,7 +1,7 @@
 ﻿@model TicketBasket
 
-<div class="row flex-grow-1">
-	<div id="status-0" class="col-4 d-flex flex-column status-container">
+<div class="row w-100 mx-0">
+	<div id="status-0" class="col-4 d-flex flex-column status-container px-0">
 		<ul class="list-unstyled h-100 m-0">
 			@foreach (var item in Model.active)
 			{
@@ -10,7 +10,7 @@
 			}
 		</ul>
 	</div>
-	<div id="status-1" class="col-4 d-flex flex-column status-container">
+	<div id="status-1" class="col-4 d-flex flex-column status-container px-0 mr-0">
 		<ul class="list-unstyled h-100 m-0">
 			@foreach (var item in Model.squashing)
 			{
@@ -19,7 +19,7 @@
 			}
 		</ul>
 	</div>
-	<div id="status-2" class="col-4 d-flex flex-column status-container">
+	<div id="status-2" class="col-4 d-flex flex-column status-container px-0">
 		<ul class="list-unstyled h-100 m-0">
 			@foreach (var item in Model.squashed)
 			{
