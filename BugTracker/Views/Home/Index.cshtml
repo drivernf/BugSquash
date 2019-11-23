@@ -31,7 +31,8 @@
 		</div>
 	</div>
 	<div id="ticket-view-container" class="container-fluid d-flex m-0 mw-100 h-100 mx-0 px-0">
-		@await Component.InvokeAsync("BasketContainer")
+		@*@await Component.InvokeAsync("BasketContainer")*@
+		<script>getTicketBasket();</script>
 	</div>
 </div>
 

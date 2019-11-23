@@ -3,6 +3,7 @@ using System.Linq;
 using Dapper;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace DataLibrary.BusinessLogic
 {

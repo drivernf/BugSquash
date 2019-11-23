@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav align-items-center">
+	@if (SignInManager.IsSignedIn(User))
+	{
+		<li class="nav-item align-middle d-none d-sm-block">
+			<span class="text-light">
+				@if (User.Identity.Name.Contains("@"))
+				{
+					@User.Identity.Name.Substring(0, User.Identity.Name.LastIndexOf("@"))
+				}
+				else
+				{
+					@User.Identity.Name
+				}
+			</span>
+		</li>
+		<li class="nav-item">
+			<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+				<button type="submit" class="nav-link btn btn-link text-light">Logout</button>
+			</form>
+		</li>
+	}
+</ul>

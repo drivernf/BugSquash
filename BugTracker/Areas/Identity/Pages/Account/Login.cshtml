@@ -1,0 +1,47 @@
+﻿@page
+@model LoginModel
+
+@{
+    Layout = "";
+    ViewData["Title"] = "Log in";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - BugTracker</title>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link href="https://fonts.googleapis.com/css?family=Nova+Square&display=swap" rel="stylesheet">
+
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body id="custom-bg" class="p-0">
+	<div id="login-container">
+		<h1 id="login-logo" class="text-center m-0">Bug Squash</h1>
+	</div>
+	<h3 id="slogan" class="text-center">tasks made simple.</h3>
+	<section>
+		@{
+			<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+				<div class="text-center">
+					<button type="submit" id="login-button" class="btn login-button p-0" name="provider" value="Google" title="Sign in using your Google account">
+						<img src="~/backgrounds/google-signin.png" class="mh-100 mw-100 w-auto">
+					</button>
+				</div>
+			</form>
+		}
+	</section>
+	<div id="login-img-container">
+		<img draggable="false" src="~/backgrounds/landing-page.png" id="login-img" class="text-center mh-100 mw-100" />
+		<img draggable="false" src="~/backgrounds/landing-page-mobile.png" id="login-img-m" class="text-center mh-100 mw-100" />
+	</div>
+</body>
+</html>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

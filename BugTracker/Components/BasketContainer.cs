@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using BugTracker.Models;
 using static DataLibrary.BusinessLogic.TicketProcessor;
+using System.Diagnostics;
 
 namespace BugTracker.Components
 {
     public class BasketContainer : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(string userId)
         {
-            return View("BasketContainer_View", GetBasket());
+            return View("BasketContainer_View", GetBasket(userId));
         }
 
         // Create and Return Ticket Basket
-        public TicketBasket GetBasket()
+        public TicketBasket GetBasket(string userId)
         {
             // Sql request from database
-            var data = LoadTickets();
+            var data = LoadTickets(userId);
 
             // Create list of all tickets
             List<TicketModel> tickets = new List<TicketModel>();

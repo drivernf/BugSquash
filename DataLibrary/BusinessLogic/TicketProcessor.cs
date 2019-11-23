@@ -5,23 +5,22 @@ namespace DataLibrary.BusinessLogic
 {
     public static class TicketProcessor
     {
-        public static int CreateTicket(int status, string urgency, string description)
+        public static int CreateTicket(string userId, int status, string urgency, string description)
         {
             TicketModel data = new TicketModel
             {
-                TicketId = 9,
                 Status = status,
                 Urgency = ConvertUrgency(urgency),
                 Description = description
             };
 
-            string sql = @"insert into dbo.TicketTable (TicketId, Status, Urgency, Description)
-                            values (@TicketId, @Status, @Urgency, @Description);";
+            string sql = $@"insert into dbo.{userId} (Status, Urgency, Description)
+                            values (@Status, @Urgency, @Description);";
 
             return SqlDataAccess.SaveData(sql, data);
         }
 
-        public static int ModifyTicket(int ticketId, string urgency, string description)
+        public static int ModifyTicket(string userId, int ticketId, string urgency, string description)
         {
             TicketModel data = new TicketModel
             {
@@ -31,15 +30,15 @@ namespace DataLibrary.BusinessLogic
                 Description = description
             };
 
-            string sql = @"update dbo.TicketTable set Urgency = @Urgency, Description = @Description where Id = @TicketId;";
+            string sql = $@"update dbo.{userId} set Urgency = @Urgency, Description = @Description where Id = @TicketId;";
 
             return SqlDataAccess.SaveData(sql, data);
         }
 
 
-        public static List<TicketModel> LoadTickets()
+        public static List<TicketModel> LoadTickets(string userId)
         {
-            string sql = @"select Id, TicketId, Status, Urgency, Description from dbo.TicketTable;";
+            string sql = $@"select Id, Status, Urgency, Description from dbo.{userId};";
 
             return SqlDataAccess.LoadData<TicketModel>(sql);
         }
@@ -52,19 +51,19 @@ namespace DataLibrary.BusinessLogic
             else return 0;
         }
 
-        public static int RemoveTicket(int ticketId)
+        public static int RemoveTicket(string userId, int ticketId)
         {
             TicketModel data = new TicketModel
             {
                 TicketId = ticketId
             };
 
-            string sql = @"delete from dbo.TicketTable where Id = @TicketId;";
+            string sql = $@"delete from dbo.{userId} where Id = @TicketId;";
 
             return SqlDataAccess.SaveData(sql, data);
         }
 
-        public static int StatusChange(int ticketId, int status)
+        public static int StatusChange(string userId, int ticketId, int status)
         {
             TicketModel data = new TicketModel
             {
@@ -72,7 +71,7 @@ namespace DataLibrary.BusinessLogic
                 Status = status
             };
 
-            string sql = @"update dbo.TicketTable set Status = @Status where Id = @TicketId;";
+            string sql = $@"update dbo.{userId} set Status = @Status where Id = @TicketId;";
 
             return SqlDataAccess.SaveData(sql, data);
         }
