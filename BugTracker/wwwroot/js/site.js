@@ -2,9 +2,12 @@
 	$('.empty-div').hide();
 });
 
-function getTicketBasket() {
+function getTicketBasket(projectName) {
 	var container = $("#ticket-view-container");
-	$.get("basket", function (data) { container.html(data); });
+	$.get("/basket", { projectName: projectName })
+		.done(function (data) {
+			container.html(data);
+		});
 }
 
 function setUrgency(urgText) {
@@ -33,7 +36,7 @@ function showDetailsModal(ticketId) {
 function editTicket(ticketId) {
 	var description = document.getElementById("d-description-" + ticketId).value;
 	var urgency = document.getElementById("d-urgency-" + ticketId).text;
-	$.get("edit-ticket", { ticketId: ticketId, urgency: urgency, description: description })
+	$.get("/edit-ticket", { ticketId: ticketId, urgency: urgency, description: description })
 		.done(function (data) {
 			$('#detailsmodal-' + ticketId).modal('hide');
 			$('.modal-backdrop').hide();
@@ -42,7 +45,7 @@ function editTicket(ticketId) {
 }
 
 function deleteTicket(ticketId) {
-	$.get("delete-ticket", { ticketId: ticketId })
+	$.get("/delete-ticket", { ticketId: ticketId })
 		.done(function (data) {
 			$('#detailsmodal-' + ticketId).modal('hide');
 			$('.modal-backdrop').hide();
@@ -50,7 +53,7 @@ function deleteTicket(ticketId) {
 		});
 }
 
-function statusTicket(ticket, container) {
+function statusTicket(projectName, ticket, container) {
 	var ticketId = ticket.attr('id').replace('item-', '');
 	var ticketClasses = ticket.attr('class').split(/\s+/);
 	var containerId = container.attr('id');
@@ -60,7 +63,7 @@ function statusTicket(ticket, container) {
 	if (!$(ticket).data('uiDraggable')) return;
 	ticket.draggable("option", "revertDuration", 0);
 	ticket.appendTo(container.children());
-	$.get("status-ticket", { ticketId: ticketId, status: containerId.replace('status-', '') })
+	$.get("/status-ticket", { projectName: projectName, ticketId: ticketId, status: containerId.replace('status-', '') })
 		.done(function (data) {
 			$("#ticket-view-container").html(data);
 			$('html,body').css('cursor', 'default');

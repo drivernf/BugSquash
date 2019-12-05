@@ -6,7 +6,7 @@
 	@if (SignInManager.IsSignedIn(User))
 	{
 		<li class="nav-item align-middle d-none d-sm-block">
-			<span class="text-light">
+			<span class="nav-user">
 				@if (User.Identity.Name.Contains("@"))
 				{
 					@User.Identity.Name.Substring(0, User.Identity.Name.LastIndexOf("@"))

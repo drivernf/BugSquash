@@ -16,14 +16,13 @@
 	<script src="~/js/site.js" asp-append-version="true"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark header-color py-1" style="white-space: nowrap;">
+	<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-light header-color py-1" style="white-space: nowrap;">
 		<div class="container pl-0">
-			@*<a id="siteLogo" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Bug Squash</a>*@
 			<span id="siteLogo" class="navbar-brand unselectable">Bug Squash</span>
 			<div id="siteNav" class="navbar-collapse d-sm-inline-flex">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">My Projects</a>
+						<a class="nav-link" asp-route="projects">My Projects</a>
 					</li>
 				</ul>
 			</div>

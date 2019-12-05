@@ -7,5 +7,6 @@ namespace DataLibrary.Models
     public class TableModel
     {
         public string userId { get; set; }
+        public string projectName { get; set; }
     }
 }

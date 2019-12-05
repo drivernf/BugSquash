@@ -1,5 +1,12 @@
 ﻿body {
 	padding-top: 48px;
+	background-color: #2f3032 !important;
+	background-image: url("../backgrounds/black-felt.png");
+}
+
+.header-color {
+	background-color: #2f3032 !important;
+	background-image: url("../backgrounds/black-felt.png");
 }
 
 html, body {
@@ -8,6 +15,7 @@ html, body {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
+	background-color: white !important;
 	padding-left: 15px;
 	padding-right: 15px;
 	height: 100% !important;
@@ -34,10 +42,6 @@ textarea {
 .container .row {
 	display: flex !important;
 	align-items: center !important;
-}
-
-.header-color {
-	background-color: #222831 !important;
 }
 
 .ticket-listitem {
@@ -84,6 +88,10 @@ textarea {
 	padding-left: 5px;
 }
 
+.nav-user {
+	color: white;
+}
+
 .status-container-highlight {
 	background-color: lightgrey;
 }
@@ -99,7 +107,6 @@ textarea {
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: white;
 	overflow-x: hidden;
 	padding-top: 128px;
 }

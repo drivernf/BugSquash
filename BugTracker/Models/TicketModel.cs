@@ -4,6 +4,7 @@ namespace BugTracker.Models
 {
     public class TicketModel
     {
+        public string ProjectName { get; set; }
         public int TicketId { get; set; }
         public int Status { get; set; }
         public string Urgency { get; set; }

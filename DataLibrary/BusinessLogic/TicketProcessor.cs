@@ -36,9 +36,9 @@ namespace DataLibrary.BusinessLogic
         }
 
 
-        public static List<TicketModel> LoadTickets(string userId)
+        public static List<TicketModel> LoadTickets(string userId, string projectName)
         {
-            string sql = $@"select Id, Status, Urgency, Description from dbo.{userId};";
+            string sql = $@"select Id, Status, Urgency, Description from dbo.{userId}@{projectName};";
 
             return SqlDataAccess.LoadData<TicketModel>(sql);
         }
@@ -63,7 +63,7 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
 
-        public static int StatusChange(string userId, int ticketId, int status)
+        public static int StatusChange(string userId, string projectName, int ticketId, int status)
         {
             TicketModel data = new TicketModel
             {
@@ -71,7 +71,7 @@ namespace DataLibrary.BusinessLogic
                 Status = status
             };
 
-            string sql = $@"update dbo.{userId} set Status = @Status where Id = @TicketId;";
+            string sql = $@"update dbo.{userId}@{projectName} set Status = @Status where Id = @TicketId;";
 
             return SqlDataAccess.SaveData(sql, data);
         }

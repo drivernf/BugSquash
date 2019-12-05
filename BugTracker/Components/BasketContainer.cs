@@ -9,16 +9,16 @@ namespace BugTracker.Components
 {
     public class BasketContainer : ViewComponent
     {
-        public IViewComponentResult Invoke(string userId)
+        public IViewComponentResult Invoke(string userId, string projectName)
         {
-            return View("BasketContainer_View", GetBasket(userId));
+            return View("BasketContainer_View", GetBasket(userId, projectName));
         }
 
         // Create and Return Ticket Basket
-        public TicketBasket GetBasket(string userId)
+        public TicketBasket GetBasket(string userId, string projectName)
         {
             // Sql request from database
-            var data = LoadTickets(userId);
+            var data = LoadTickets(userId, projectName);
 
             // Create list of all tickets
             List<TicketModel> tickets = new List<TicketModel>();
@@ -34,6 +34,7 @@ namespace BugTracker.Components
             // Subdivide tickets into basket
             var basket = new TicketBasket
             {
+                projectName = projectName,
                 active = ticketsSorted.Where(x => x.Status == 0).ToList(),
                 squashing = ticketsSorted.Where(x => x.Status == 1).ToList(),
                 squashed = ticketsSorted.Where(x => x.Status == 2).ToList()

@@ -15,20 +15,30 @@ namespace BugTracker.Controllers
         // Index Page View
         public IActionResult Index()
         {
-            if (GetTable(UserId())[0] == 0)
-                CreateTable(UserId());
-            return View();
+            return RedirectToAction("projects");
+        }
+
+        [Route("project/{projectName}", Name = "project/{projectName}")]
+        public IActionResult Index(string projectName)
+        {
+            if (CheckTable(UserId(), projectName)[0] == 0)
+                return RedirectToAction("projects");
+            else
+            {
+                var model = new TicketModel { ProjectName = projectName };
+                return View(model);
+            }
         }
 
         // Returns Basket Container Component
         [Route("basket")]
-        public IActionResult Basket()
+        public IActionResult Basket(string projectName)
         {
-            return ViewComponent("BasketContainer", new { userId = UserId() });
+            return ViewComponent("BasketContainer", new { userId = UserId(), projectName });
         }
 
         // Returns Basket Container Component
-        [Route("projects")]
+        [Route("projects", Name = "projects")]
         public IActionResult Projects()
         {
             return View("Projects_View");
@@ -61,9 +71,27 @@ namespace BugTracker.Controllers
 
         // Change Status of Ticket Post
         [Route("status-ticket")]
-        public IActionResult StatusTicket(int ticketId, int status)
+        public IActionResult StatusTicket(string projectName, int ticketId, int status)
         {
-            StatusChange(UserId(), ticketId, status);
+            StatusChange(UserId(), projectName, ticketId, status);
+            return ViewComponent("BasketContainer", new { userId = UserId(), projectName });
+        }
+
+        // Add Project
+        [Route("add-project")]
+        public IActionResult AddProject(string projectName)
+        {
+            Debug.WriteLine($"Creating project: {projectName}");
+            CreateTable(UserId(), projectName);
+            return ViewComponent("BasketContainer", new { userId = UserId() });
+        }
+
+        // Get Project
+        [Route("get-project")]
+        public IActionResult GetProject(string projectName)
+        {
+            Debug.WriteLine($"Getting project: {projectName}");
+            //GetTable(UserId(), projectName);
             return ViewComponent("BasketContainer", new { userId = UserId() });
         }
 

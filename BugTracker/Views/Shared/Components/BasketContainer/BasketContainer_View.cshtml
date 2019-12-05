@@ -35,7 +35,7 @@
 		accept: '.ticket-listitem',
 		drop: function (event, ui) {
 			var ticket = $(ui.draggable);
-			statusTicket(ticket, $(this));
+			statusTicket('@Model.projectName', ticket, $(this));
 		},
 		classes: {
 			'ui-droppable-hover': 'status-container-highlight'
