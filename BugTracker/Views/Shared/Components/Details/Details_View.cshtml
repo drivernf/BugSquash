@@ -25,9 +25,9 @@
 				<textarea id="d-description-@Model.TicketId" rows="15" style="resize:none;" class="w-100 d-block ml-auto mr-auto">@Html.DisplayFor(modelItem => Model.Description)</textarea>
 			</div>
 			<div class="modal-footer justify-content-center">
-				<button type="button" class="btn btn-danger" onclick="deleteTicket('@Model.TicketId')">Delete</button>
+				<button type="button" class="btn btn-danger" onclick="deleteTicket('@Model.ProjectName', '@Model.TicketId')">Delete</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" onclick="editTicket('@Model.TicketId')">Save changes</button>
+				<button type="button" class="btn btn-primary" onclick="editTicket('@Model.ProjectName', '@Model.TicketId')">Save changes</button>
 			</div>
 		</div>
 	</div>

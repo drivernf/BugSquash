@@ -15,7 +15,8 @@
 						<label for="recipient-name" class="col-form-label">Urgency:</label>
 						<div class="dropdown show">
 							<a class="btn btn-secondary dropdown-toggle urgency-dropdown" href="#" role="button" data-toggle="dropdown">none</a>
-							<input asp-for="Urgency" type="hidden" class="form-control urgencyInput" value="0"/>
+							<input asp-for="ProjectName" type="hidden" class="form-control pNameInput" value="@Model.ProjectName" />
+							<input asp-for="Urgency" type="hidden" class="form-control urgencyInput" value="0" />
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="#" onclick="setUrgency('none')">none</a>
 								<a class="dropdown-item" href="#" onclick="setUrgency('vital')">vital</a>

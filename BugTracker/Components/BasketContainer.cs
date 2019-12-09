@@ -23,7 +23,7 @@ namespace BugTracker.Components
             // Create list of all tickets
             List<TicketModel> tickets = new List<TicketModel>();
             foreach (var row in data)
-                tickets.Add(GetTicket(row));
+                tickets.Add(GetTicket(row, projectName));
 
             // Sort list of tickets by urgency
             List<TicketModel> ticketsSorted = tickets.Where(x => x.Urgency == "vital").ToList();
@@ -45,10 +45,11 @@ namespace BugTracker.Components
         }
 
         // Create Client Ticket Model
-        public TicketModel GetTicket(DataLibrary.Models.TicketModel t)
+        public TicketModel GetTicket(DataLibrary.Models.TicketModel t, string projectName)
         {
             TicketModel ticketModel = new TicketModel
             {
+                ProjectName = projectName,
                 TicketId = t.Id,
                 Status = t.Status,
                 Urgency = ConvertUrgency(t.Urgency),

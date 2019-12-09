@@ -5,7 +5,7 @@ namespace DataLibrary.BusinessLogic
 {
     public static class TicketProcessor
     {
-        public static int CreateTicket(string userId, int status, string urgency, string description)
+        public static int CreateTicket(string userId, string projectName, int status, string urgency, string description)
         {
             TicketModel data = new TicketModel
             {
@@ -14,13 +14,13 @@ namespace DataLibrary.BusinessLogic
                 Description = description
             };
 
-            string sql = $@"insert into dbo.{userId} (Status, Urgency, Description)
+            string sql = $@"insert into dbo.{userId}@{projectName} (Status, Urgency, Description)
                             values (@Status, @Urgency, @Description);";
 
             return SqlDataAccess.SaveData(sql, data);
         }
 
-        public static int ModifyTicket(string userId, int ticketId, string urgency, string description)
+        public static int ModifyTicket(string userId, string projectName, int ticketId, string urgency, string description)
         {
             TicketModel data = new TicketModel
             {
@@ -30,7 +30,7 @@ namespace DataLibrary.BusinessLogic
                 Description = description
             };
 
-            string sql = $@"update dbo.{userId} set Urgency = @Urgency, Description = @Description where Id = @TicketId;";
+            string sql = $@"update dbo.{userId}@{projectName} set Urgency = @Urgency, Description = @Description where Id = @TicketId;";
 
             return SqlDataAccess.SaveData(sql, data);
         }
@@ -51,14 +51,14 @@ namespace DataLibrary.BusinessLogic
             else return 0;
         }
 
-        public static int RemoveTicket(string userId, int ticketId)
+        public static int RemoveTicket(string userId, string projectName, int ticketId)
         {
             TicketModel data = new TicketModel
             {
                 TicketId = ticketId
             };
 
-            string sql = $@"delete from dbo.{userId} where Id = @TicketId;";
+            string sql = $@"delete from dbo.{userId}@{projectName} where Id = @TicketId;";
 
             return SqlDataAccess.SaveData(sql, data);
         }

@@ -33,23 +33,23 @@ function showDetailsModal(ticketId) {
 	}
 }
 
-function editTicket(ticketId) {
+function editTicket(projectName, ticketId) {
 	var description = document.getElementById("d-description-" + ticketId).value;
 	var urgency = document.getElementById("d-urgency-" + ticketId).text;
-	$.get("/edit-ticket", { ticketId: ticketId, urgency: urgency, description: description })
+	$.get("/edit-ticket", { projectName: projectName, ticketId: ticketId, urgency: urgency, description: description })
 		.done(function (data) {
 			$('#detailsmodal-' + ticketId).modal('hide');
 			$('.modal-backdrop').hide();
-			getTicketBasket();
+			getTicketBasket(projectName);
 		});
 }
 
-function deleteTicket(ticketId) {
-	$.get("/delete-ticket", { ticketId: ticketId })
+function deleteTicket(projectName, ticketId) {
+	$.get("/delete-ticket", { projectName: projectName, ticketId: ticketId })
 		.done(function (data) {
 			$('#detailsmodal-' + ticketId).modal('hide');
 			$('.modal-backdrop').hide();
-			getTicketBasket();
+			getTicketBasket(projectName);
 		});
 }
 

@@ -6,3 +6,11 @@ F:\VS Projects\Core\DataLibrary\obj\Release\netcoreapp3.0\DataLibrary.AssemblyIn
 F:\VS Projects\Core\DataLibrary\obj\Release\netcoreapp3.0\DataLibrary.AssemblyInfo.cs
 F:\VS Projects\Core\DataLibrary\obj\Release\netcoreapp3.0\DataLibrary.dll
 F:\VS Projects\Core\DataLibrary\obj\Release\netcoreapp3.0\DataLibrary.pdb
+E:\VS Projects\Core\DataLibrary\bin\Release\netcoreapp3.0\DataLibrary.deps.json
+E:\VS Projects\Core\DataLibrary\bin\Release\netcoreapp3.0\DataLibrary.dll
+E:\VS Projects\Core\DataLibrary\bin\Release\netcoreapp3.0\DataLibrary.pdb
+E:\VS Projects\Core\DataLibrary\obj\Release\netcoreapp3.0\DataLibrary.csprojAssemblyReference.cache
+E:\VS Projects\Core\DataLibrary\obj\Release\netcoreapp3.0\DataLibrary.AssemblyInfoInputs.cache
+E:\VS Projects\Core\DataLibrary\obj\Release\netcoreapp3.0\DataLibrary.AssemblyInfo.cs
+E:\VS Projects\Core\DataLibrary\obj\Release\netcoreapp3.0\DataLibrary.dll
+E:\VS Projects\Core\DataLibrary\obj\Release\netcoreapp3.0\DataLibrary.pdb

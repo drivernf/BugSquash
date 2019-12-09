@@ -49,24 +49,25 @@ namespace BugTracker.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddTicket(TicketModel model)
         {
+            Debug.WriteLine($"Add ticket for: {model.ProjectName}");
             if (ModelState.IsValid)
-                CreateTicket(UserId(), 0, model.Urgency, model.Description);
+                CreateTicket(UserId(), model.ProjectName, 0, model.Urgency, model.Description);
 
-            return RedirectToAction("Index");
+            return Redirect($"/project/{model.ProjectName}");
         }
 
         // Edit Ticket Post
         [Route("edit-ticket")]
-        public void EditTicket(int ticketId, string urgency, string description)
+        public void EditTicket(string projectName, int ticketId, string urgency, string description)
         {
-            ModifyTicket(UserId(), ticketId, urgency, description);
+            ModifyTicket(UserId(), projectName, ticketId, urgency, description);
         }
 
         // Delete Ticket Post
         [Route("delete-ticket")]
-        public void DeleteTicket(int ticketId)
+        public void DeleteTicket(string projectName, int ticketId)
         {
-            RemoveTicket(UserId(), ticketId);
+            RemoveTicket(UserId(), projectName, ticketId);
         }
 
         // Change Status of Ticket Post

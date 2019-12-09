@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\VS Projects\\Core\\DataLibrary\\DataLibrary.csproj": {}
+    "E:\\VS Projects\\Core\\DataLibrary\\DataLibrary.csproj": {}
   },
   "projects": {
-    "F:\\VS Projects\\Core\\DataLibrary\\DataLibrary.csproj": {
+    "E:\\VS Projects\\Core\\DataLibrary\\DataLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\VS Projects\\Core\\DataLibrary\\DataLibrary.csproj",
+        "projectUniqueName": "E:\\VS Projects\\Core\\DataLibrary\\DataLibrary.csproj",
         "projectName": "DataLibrary",
-        "projectPath": "F:\\VS Projects\\Core\\DataLibrary\\DataLibrary.csproj",
+        "projectPath": "E:\\VS Projects\\Core\\DataLibrary\\DataLibrary.csproj",
         "packagesPath": "C:\\Users\\Nick\\.nuget\\packages\\",
-        "outputPath": "F:\\VS Projects\\Core\\DataLibrary\\obj\\",
+        "outputPath": "E:\\VS Projects\\Core\\DataLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nick\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -61,12 +61,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
