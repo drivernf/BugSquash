@@ -41,7 +41,15 @@ namespace BugTracker.Controllers
         [Route("projects", Name = "projects")]
         public IActionResult Projects()
         {
-            return View("Projects_View");
+            // Sql request from database
+            List<string> data = GetTables(UserId());
+
+            // Create list of projects
+            List<ProjectModel> projects = new List<ProjectModel>();
+            foreach (string projectName in data)
+                projects.Add(new ProjectModel { ProjectName = projectName.Substring(projectName.IndexOf("@") + 1) });
+
+            return View("Projects_View", projects);
         }
 
         // Add Ticket Post
@@ -80,20 +88,10 @@ namespace BugTracker.Controllers
 
         // Add Project
         [Route("add-project")]
-        public IActionResult AddProject(string projectName)
+        public void AddProject(string projectName)
         {
             Debug.WriteLine($"Creating project: {projectName}");
             CreateTable(UserId(), projectName);
-            return ViewComponent("BasketContainer", new { userId = UserId() });
-        }
-
-        // Get Project
-        [Route("get-project")]
-        public IActionResult GetProject(string projectName)
-        {
-            Debug.WriteLine($"Getting project: {projectName}");
-            //GetTable(UserId(), projectName);
-            return ViewComponent("BasketContainer", new { userId = UserId() });
         }
 
         // Error Page View

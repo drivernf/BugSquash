@@ -1,6 +1,7 @@
 ﻿@{
-    ViewData["Title"] = "Projects";
+	ViewData["Title"] = "Projects";
 }
+@model IEnumerable<BugTracker.Models.ProjectModel>
 
 <div class="row h-100 justify-content-center">
 	<div class="col-4 d-flex flex-column justify-content-center">
@@ -9,7 +10,10 @@
 			<button class="btn btn-primary" onclick="addProject()">Create</button>
 		</div>
 		<div class="card">
-			<span>asdfd</span>
+			@foreach (var item in Model)
+			{
+				<span>@item.ProjectName</span>
+			}
 		</div>
 
 	</div>
